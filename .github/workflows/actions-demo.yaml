@@ -9,6 +9,7 @@ jobs:
       ACTOR: ${{github.actor}}
       TAG: ${{github.sha}}
     steps:
+      - uses: actions/checkout@v2
       - name: hello world
         run: |
           cd ActionsDemo
