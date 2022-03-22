@@ -1,0 +1,9 @@
+name: action-demo-workflows
+on: [push]
+
+jobs:
+  action-demo-build-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: hello world
+        run: echo "hello world"
