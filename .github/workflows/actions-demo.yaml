@@ -19,4 +19,12 @@ jobs:
         run: |
           echo $TOKEN | docker login ghcr.io -u $ACTOR --password-stdin
           docker push $REGISTRY/$ACTOR/actionsdemo:$TAG
+  action-deploy:
+    needs: action-demo-build-push
+    runs-on: ubuntu-latest
+    environment:
+      name: qa-env
+    steps:
+      - name: deploy
+        run: echo "deploying docker image"
 
