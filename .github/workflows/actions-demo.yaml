@@ -8,9 +8,15 @@ jobs:
       REGISTRY: ghcr.io
       ACTOR: ${{github.actor}}
       TAG: ${{github.sha}}
+      TOKEN: ${{secrets.GITHUB_TOKEN}}
     steps:
       - uses: actions/checkout@v2
-      - name: hello world
+      - name: build
         run: |
           cd ActionsDemo
           docker build . -t $REGISTRY/$ACTOR/actionsdemo:$TAG
+      - name: push image
+        run: |
+          echo $TOKEN | docker login ghcr.io -u $ACTOR --password-stdin
+          docker push $REGISTRY/$ACTOR/actionsdemo:$TAG
+
