@@ -6,4 +6,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: hello world
-        run: echo "hello world"
+        run: |
+          cd ActionsDemo
+          docker build . -t actionsdemo
