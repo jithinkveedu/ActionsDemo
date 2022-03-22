@@ -4,8 +4,12 @@ on: [push]
 jobs:
   action-demo-build-push:
     runs-on: ubuntu-latest
+    env:
+      REGISTRY: ghcr.io
+      ACTOR: ${{github.actor}}
+      TAG: ${{github.sha}}
     steps:
       - name: hello world
         run: |
           cd ActionsDemo
-          docker build . -t actionsdemo
+          docker build . -t $REGISTRY/$ACTOR/actionsdemo:$TAG
